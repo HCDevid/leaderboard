@@ -8,5 +8,15 @@
 </body>
 
 <template name = "leaderboard">
-	Hello world!!
+	Hello world!! 
+	<br><br>
+	<ul>
+	{{#each player}} 
+		<li>
+		{{name}} - {{score}}
+		</li>
+	{{/each}}
+	</ul>
+	<br>
+	There are {{playerCount}} players.
 </template>
