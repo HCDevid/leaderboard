@@ -9,6 +9,13 @@ if(Meteor.isClient){
     'playerCount' : function() {
       return PlayersList.find().count()
     },
+    'selectedClass' : function() {
+      var playerId = this._id;
+      var selectedPlayer = Session.get('selectedPlayer')
+      if(playerId == selectedPlayer){
+        return 'selected'
+      }
+    },
     'other' : function() {
       return "other template helper check"
     }
@@ -16,7 +23,8 @@ if(Meteor.isClient){
 
   Template.leaderboard.events({
     'click .player' : function() {
-      console.log("You've clicked a player class element!")
+      var playerId = this._id
+      Session.set('selectedPlayer', playerId);
     }
   })
 
