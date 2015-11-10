@@ -13,6 +13,13 @@ if(Meteor.isClient){
       return "other template helper check"
     }
   })
+
+  Template.leaderboard.events({
+    'click .player' : function() {
+      console.log("You've clicked a player class element!")
+    }
+  })
+
 }
 
 if(Meteor.isServer){
