@@ -1,0 +1,1 @@
+Leaderboard app from David Turnbull's "First Meteor Application"
