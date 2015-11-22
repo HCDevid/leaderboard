@@ -9,6 +9,10 @@ if(Meteor.isClient){
     'playerCount' : function() {
       return PlayersList.find().count()
     },
+    'showSelectedPlayer' : function() {
+      var selectedPlayer = Session.get('selectedPlayer')
+      return PlayersList.findOne(selectedPlayer)
+    },
     'selectedClass' : function() {
       var playerId = this._id;
       var selectedPlayer = Session.get('selectedPlayer')
