@@ -34,5 +34,13 @@
 	<br>
 	There are {{playerCount}} players.
 
+	{{> addPlayerForm}}
 
+</template>
+
+<template name = "addPlayerForm">
+	<form>
+		<input type = "text" name = "playerName">
+		<input type = "submit" value = "Add Player">
+	</form>
 </template>

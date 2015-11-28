@@ -40,6 +40,14 @@ if(Meteor.isClient){
     }
   })
 
+  Template.addPlayerForm.events({
+    'submit form' : function(ev) {
+      ev.preventDefault()
+      console.log("form submitted")
+      console.log(ev.type)
+    }
+  })
+
 }
 
 if(Meteor.isServer){
