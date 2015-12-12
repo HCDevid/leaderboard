@@ -30,6 +30,8 @@
 	<input type = 'button' class = 'increment' value = 'Get 5 points'>
 	
 	<input type = 'button' class = 'decrement' value = 'Take 5 points'>
+
+	<input type = 'button' class = 'remove' value = 'Remove Player'>
 	
 	<br>
 	There are {{playerCount}} players.
@@ -40,7 +42,8 @@
 
 <template name = "addPlayerForm">
 	<form>
-		<input type = "text" name = "playerName">
-		<input type = "submit" value = "Add Player">
+		<input type = "text" name = "playerName" >
+		<input type = "number" name = "score" value = 0 >
+		<input type = "submit" value = "Add Player" >
 	</form>
 </template>
