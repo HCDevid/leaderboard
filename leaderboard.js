@@ -4,7 +4,8 @@ if(Meteor.isClient){
 
   Template.leaderboard.helpers({
     'player' : function() {
-      return PlayersList.find( {} , {sort: {score: -1, name: 1} })
+      var currentUserId = Meteor.userId()
+      return PlayersList.find( {createdBy: currentUserId}, {sort: {score: -1, name: 1} })
     },
     'playerCount' : function() {
       return PlayersList.find().count()
@@ -54,11 +55,14 @@ if(Meteor.isClient){
       ev.preventDefault()
       var playerNameVar = ev.target.playerName.value
       var playerScoreVar = ev.target.score.value
+      var currentUserId = Meteor.userId()
       console.log(playerNameVar)
       console.log(playerScoreVar)
+      console.log(currentUserId)
       PlayersList.insert({
         name: playerNameVar,
-        score: playerScoreVar
+        score: playerScoreVar,
+        createdBy: currentUserId
       })
       ev.target.playerName.value = ''
       ev.target.score.value = 0
