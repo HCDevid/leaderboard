@@ -2,10 +2,12 @@ PlayersList = new Mongo.Collection('players');
   
 if(Meteor.isClient){
 
+  Meteor.subscribe('thePlayers')
+
   Template.leaderboard.helpers({
     'player' : function() {
       var currentUserId = Meteor.userId()
-      return PlayersList.find( {createdBy: currentUserId}, {sort: {score: -1, name: 1} })
+      return PlayersList.find( {}, {sort: {score: -1, name: 1} })
     },
     'playerCount' : function() {
       return PlayersList.find().count()
@@ -72,5 +74,8 @@ if(Meteor.isClient){
 }
 
 if(Meteor.isServer){
-  console.log("Server checking in after client call");
+  Meteor.publish('thePlayers', function() {
+    var currentUserId = this.userId
+    return PlayersList.find({createdBy: currentUserId})
+  })
 }
