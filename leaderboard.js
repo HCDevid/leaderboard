@@ -58,14 +58,7 @@ if(Meteor.isClient){
       var playerNameVar = ev.target.playerName.value
       var playerScoreVar = ev.target.score.value
       var currentUserId = Meteor.userId()
-      console.log(playerNameVar)
-      console.log(playerScoreVar)
-      console.log(currentUserId)
-      PlayersList.insert({
-        name: playerNameVar,
-        score: playerScoreVar,
-        createdBy: currentUserId
-      })
+      Meteor.call('insertPlayerData', playerNameVar, playerScoreVar, currentUserId)
       ev.target.playerName.value = ''
       ev.target.score.value = 0
     }
@@ -78,4 +71,19 @@ if(Meteor.isServer){
     var currentUserId = this.userId
     return PlayersList.find({createdBy: currentUserId})
   })
+
+  Meteor.methods({
+    'insertPlayerData' : function(playerNameVar, playerScoreVar, currentUserId) {
+      console.log(playerNameVar)
+      console.log(playerScoreVar)
+      console.log(currentUserId)
+      PlayersList.insert({
+        name: playerNameVar,
+        score: playerScoreVar,
+        createdBy: currentUserId
+      })
+
+    }
+  })
+
 }
