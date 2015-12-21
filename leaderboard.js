@@ -67,19 +67,22 @@ if(Meteor.isClient){
 }
 
 if(Meteor.isServer){
+
   Meteor.publish('thePlayers', function() {
     var currentUserId = this.userId
     return PlayersList.find({createdBy: currentUserId})
   })
 
+
   Meteor.methods({
+
     'insertPlayerData' : function(playerNameVar, playerScoreVar, currentUserId) {
       console.log(playerNameVar)
       console.log(playerScoreVar)
       console.log(currentUserId)
       PlayersList.insert({
         name: playerNameVar,
-        score: playerScoreVar,
+        score: Number(playerScoreVar),
         createdBy: currentUserId
       })
     },
@@ -90,8 +93,10 @@ if(Meteor.isServer){
     },
 
     'modifyPlayerScore' : function(selectedPlayer, scoreValue) {
+      console.log(selectedPlayer)
+      console.log(scoreValue)
       var currentUserId = Meteor.userId()
-      PlayersList.update({_id: selectedPlayer, createdBy: currentUserId}, {$inc : {score : scoreValue} })
+      PlayersList.update({_id: selectedPlayer, createdBy: currentUserId}, {$inc: {score: scoreValue} })
     }
 
   })
